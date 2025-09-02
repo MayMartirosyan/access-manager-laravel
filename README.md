@@ -20,15 +20,66 @@
 
 ## Установка
 
+Обратим внимание что проект написан на Laravel 12, php 8.2 а дб использвано mysql 8.4 , поэтому рекомендуется загрузить их прежде чем начать запуск приложения
+
 ```bash
-git clone <this_project> access-manager
+git clone git@github.com:MayMartirosyan/access-manager-laravel.git
+```
+
+В терминале в mysql логинимся как root пользователь
+
+```bash
+mysql -u root -p
+
+здесь для удобства я сразу взял данные из .env.example
+
+CREATE DATABASE access_manager CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE USER 'access_user'@'localhost' IDENTIFIED BY 'admin_password';
+
+GRANT ALL PRIVILEGES ON access_manager.* TO 'access_user'@'localhost';
+
+FLUSH PRIVILEGES;
+
+```
+
+После этого заходим в папку проекта
+
+```bash
 cd access-manager
+```
+
+Загружаем пакеты (как для laravel так и для inertia.js + React - а со сборкой vite )
+
+```bash
+
 composer install
-cp .env.example .env
-# отредактируйте .env (MySQL: DB_DATABASE/DB_USERNAME/DB_PASSWORD)
-php artisan key:generate
-php artisan migrate --seed
 npm install
+
+```
+
+Создаем .env
+
+```bash
+cp .env.example .env
+```
+
+генерируем ключ приложения
+
+```bash
+php artisan key:generate
+```
+Делаем миграции и сиды
+
+
+```bash
+php artisan migrate --seed
+```
+
+Запускаем и фронтенд и бекенд
+
+```bash
 npm run dev
 php artisan serve
 ```
+Проект успешно запущено !
