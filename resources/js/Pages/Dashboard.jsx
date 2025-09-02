@@ -4,8 +4,6 @@ import { Link } from '@inertiajs/react';
 
 export default function Dashboard({ user }) {
 
-    console.log(user,'user');
-
     const userData = user.data
     return (
         <AppLayout title="Дашборд">
